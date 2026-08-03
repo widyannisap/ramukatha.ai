@@ -14,6 +14,9 @@ import {
   Video,
   Wand2,
   Zap,
+  Infinity,
+  WandSparkles,
+  ImageUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -61,12 +64,11 @@ const videoTools = [
 ];
 
 const features = [
-  { icon: Zap, title: "Minutes, not weeks", desc: "Full campaigns rendered while your coffee is still warm." },
-  { icon: Shield, title: "Commercial license", desc: "Every paid generation ships with full commercial rights." },
-  { icon: Layers, title: "Brand consistency", desc: "Save brand kits so every asset matches your identity." },
-  { icon: Download, title: "Export anywhere", desc: "HD and 4K exports sized for web, ads and print." },
-  { icon: Clock, title: "Priority processing", desc: "Business plans jump the queue during peak hours." },
-  { icon: Palette, title: "60+ visual styles", desc: "Editorial, lifestyle, minimal, festive and more." },
+  { icon: Sparkles, title: "Campaign visuals in minutes", desc: "Turn ideas into professional AI images and videos instantly." },
+  { icon: WandSparkles, title: "No production limits", desc: "Create product scenes, lifestyle shots, and marketing visuals without expensive shoots." },
+  { icon: Palette, title: "Brand ready results", desc: "Maintain your identity with consistent styles and creative direction." },
+  { icon: ImageUp, title: "High quality exports", desc: "Generate visuals ready for ads, social media, and digital campaigns." },
+  { icon: Infinity, title: "Unlimited creativity", desc: "Explore 60+ styles and transform any concept into reality." },
 ];
 
 const steps = [
@@ -111,12 +113,11 @@ function Hero() {
             AI Creative Studio
           </span>
           <h1 className="mt-6 text-4xl font-bold leading-[1.08] md:text-6xl">
-            Create stunning AI images & videos{" "}
+            Create stunning AI visuals{" "}
             <span className="text-gradient">in minutes</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-            Ramukatha AI replaces the photoshoot, the studio and the edit suite. Upload a product,
-            describe the scene, and publish campaign-ready visuals the same day.
+           Ramukatha AI helps you generate high quality images and videos using AI. Transform simple product photos into creative visuals ready for ads, campaigns, and social media.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="rounded-full bg-brand text-primary-foreground shadow-elegant hover:opacity-90">
@@ -285,7 +286,7 @@ function Features() {
   return (
     <section className="bg-card/40 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <SectionHead eyebrow="Why teams switch" title="Built for output, not experiments" />
+        <SectionHead eyebrow="Why teams switch" title="Why creators and brands choose Ramukatha AI" />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <div key={f.title} className="rounded-3xl border border-border bg-background p-6 shadow-soft">

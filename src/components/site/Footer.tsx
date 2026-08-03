@@ -43,8 +43,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Studio-grade AI images and videos for brands, creators and online sellers — generated
-              in minutes, licensed for commercial use.
+              Your creative partner for AI generated images and videos. 
+              Create product visuals, campaign assets, and unique content faster with AI.           
             </p>
           </div>
 
