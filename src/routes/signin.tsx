@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { Sparkles, Loader as Loader2 } from "lucide-react";
+import { Sparkles, Loader as Loader2, CircleAlert as AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/signin")({
 
 function SignInPage() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, configured } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +40,9 @@ function SignInPage() {
     setLoading(true);
 
     try {
+      if (!configured) {
+        throw new Error("Authentication is not configured. Please try again later.");
+      }
       if (mode === "signup") {
         const { error: signUpError } = await supabase.auth.signUp({
           email,
@@ -78,6 +81,13 @@ function SignInPage() {
             : "Start creating with 10 free credits — no card required."}
         </p>
       </div>
+
+      {!configured && (
+        <div className="mt-8 flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-200">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>Authentication is being set up. Please check back shortly.</span>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-4">
         {mode === "signup" && (
