@@ -24,6 +24,7 @@ export type PortfolioItem = {
   tool: string;
   featured?: boolean;
   tall?: boolean;
+  videoUrl?: string;
 };
 
 export const portfolioItems: PortfolioItem[] = [
@@ -31,14 +32,14 @@ export const portfolioItems: PortfolioItem[] = [
   { id: "p2", title: "Saffron Silk Editorial", category: "AI Fashion Models", image: fashion, tool: "AI Fashion Model", featured: true, tall: true },
   { id: "p3", title: "Copper Biryani Hero", category: "Food Photography", image: food, tool: "Text to Image" },
   { id: "p4", title: "Multi-Device Launch Banner", category: "Marketing Banners", image: banner, tool: "Banner Generator", featured: true },
-  { id: "p5", title: "Sneaker Drop Teaser", category: "AI Videos", image: video, tool: "Product Showcase Video" },
-  { id: "p6", title: "Skincare Carousel Set", category: "Social Media Content", image: product, tool: "Social Media Video" },
+  { id: "p5", title: "Sneaker Drop Teaser", category: "AI Videos", image: video, tool: "Product Showcase Video", videoUrl: "https://cdn.coverr.co/videos/coverr-a-pair-of-sneakers-on-a-table-2533/1080p.mp4", featured: true },
+  { id: "p6", title: "Skincare Carousel Set", category: "Social Media Content", image: product, tool: "Social Media Video", videoUrl: "https://cdn.coverr.co/videos/coverr-putting-cream-on-the-face-2999/1080p.mp4" },
   { id: "p7", title: "Device Mockup Pack", category: "Mockups", image: banner, tool: "Mockup Generator" },
   { id: "p8", title: "Studio Cleanup: Before & After", category: "Before & After", image: food, tool: "Image Enhancement" },
   { id: "p9", title: "Runway Lookbook Frames", category: "AI Fashion Models", image: fashion, tool: "AI Fashion Model", tall: true },
   { id: "p10", title: "Golden Hour Bottle Set", category: "Product Photography", image: product, tool: "Background Removal" },
   { id: "p11", title: "Festive Menu Campaign", category: "Food Photography", image: food, tool: "Photo Merge" },
-  { id: "p12", title: "Cinematic Ad Loop", category: "AI Videos", image: video, tool: "Animated Advertisement" },
+  { id: "p12", title: "Cinematic Ad Loop", category: "AI Videos", image: video, tool: "Animated Advertisement", videoUrl: "https://cdn.coverr.co/videos/coverr-a-fashion-model-wearing-a-colorful-dress-3107/1080p.mp4", featured: true, tall: true },
 ];
 
 export const beforeAfter = { before: food, after: product };

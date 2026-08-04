@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Search, X } from "lucide-react";
+import { Play, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -29,6 +29,7 @@ function PortfolioPage() {
   const [category, setCategory] = useState<string>("All");
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<PortfolioItem | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const items = useMemo(
     () =>
@@ -74,6 +75,13 @@ function PortfolioPage() {
                 loading="lazy"
                 className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
+              {item.videoUrl && (
+                <span className="absolute inset-0 grid place-items-center">
+                  <span className="grid h-14 w-14 place-items-center rounded-full bg-black/60 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                    <Play className="h-5 w-5 fill-white text-white" />
+                  </span>
+                </span>
+              )}
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-5 text-left">
                 <span className="block text-sm font-semibold text-white">{item.title}</span>
                 <span className="block text-xs text-white/70">{item.category}</span>
@@ -122,14 +130,23 @@ function PortfolioPage() {
               onClick={() => setActive(item)}
               className="group block w-full break-inside-avoid overflow-hidden rounded-3xl border border-border bg-card text-left shadow-soft"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
-                  item.tall ? "h-[26rem]" : "h-64"
-                }`}
-              />
+              <span className="relative block overflow-hidden rounded-t-3xl">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
+                    item.tall ? "h-[26rem]" : "h-64"
+                  }`}
+                />
+                {item.videoUrl && (
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-12 w-12 place-items-center rounded-full bg-black/55 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                      <Play className="h-4.5 w-4.5 fill-white text-white" />
+                    </span>
+                  </span>
+                )}
+              </span>
               <span className="flex items-center justify-between gap-3 p-4">
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold">{item.title}</span>
@@ -144,12 +161,30 @@ function PortfolioPage() {
         </div>
       )}
 
-      <Dialog open={!!active} onOpenChange={(open) => !open && setActive(null)}>
+      <Dialog open={!!active} onOpenChange={(open) => {
+        if (!open) {
+          videoRef.current?.pause();
+          setActive(null);
+        }
+      }}>
         <DialogContent className="max-w-3xl overflow-hidden rounded-3xl p-0">
           {active && (
             <>
               <DialogTitle className="sr-only">{active.title}</DialogTitle>
-              <img src={active.image} alt={active.title} className="max-h-[70vh] w-full object-contain bg-black" />
+              {active.videoUrl ? (
+                <video
+                  ref={videoRef}
+                  src={active.videoUrl}
+                  poster={active.image}
+                  controls
+                  autoPlay
+                  loop
+                  playsInline
+                  className="max-h-[70vh] w-full bg-black object-contain"
+                />
+              ) : (
+                <img src={active.image} alt={active.title} className="max-h-[70vh] w-full object-contain bg-black" />
+              )}
               <div className="flex items-center justify-between gap-4 p-5">
                 <div className="min-w-0">
                   <p className="truncate font-semibold">{active.title}</p>
