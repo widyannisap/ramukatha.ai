@@ -48,10 +48,6 @@ export function Header() {
             {theme === "dark" ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
           </Button>
 
-          <Button asChild variant="ghost" className="hidden sm:inline-flex">
-            <Link to="/pricing">Pricing</Link>
-          </Button>
-
           {user ? (
             <div className="hidden items-center gap-2 sm:flex">
               <span className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm font-medium">
